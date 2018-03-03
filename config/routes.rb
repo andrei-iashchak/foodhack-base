@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :kitchens
   resources :ingredients
   resources :recipts
   telegram_webhook TelegramController, :default

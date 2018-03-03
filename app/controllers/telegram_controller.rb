@@ -11,7 +11,7 @@ class TelegramController < Telegram::Bot::UpdatesController
     response_from_tensor = Ingredient.includes(:recipts)
       .find_by(name: ['tomatoes'])
       .recipts.first
-    respond_with :message, text: build_article(response_from_tensor)
+    respond_with :message, text: build_article(response_from_tensor), parse_mode: 'Markdown'
   end
 
   # This basic methods receives commonly used params:
