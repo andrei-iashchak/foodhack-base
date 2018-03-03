@@ -1,15 +1,15 @@
-class Telegram::WebhookController < Telegram::Bot::UpdatesController
+class TelegramController < Telegram::Bot::UpdatesController
   # use callbacks like in any other controllers
-  around_action :with_locale
+  # around_action :with_locale
 
   # Every update can have one of: message, inline_query, chosen_inline_result,
   # callback_query, etc.
-  # Define method with same name to respond to this updates.
-  def message(message)
-    # message can be also accessed via instance method
-    message == self.payload # true
-    store_message(message['text'])
-  end
+  # # Define method with same name to respond to this updates.
+  # def message(message)
+  #   # message can be also accessed via instance method
+  #   message == self.payload # true
+  #   store_message(message['text'])
+  # end
 
   # This basic methods receives commonly used params:
   #
