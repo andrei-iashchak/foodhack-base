@@ -8,10 +8,10 @@ class TelegramController < Telegram::Bot::UpdatesController
   def message(message)
     # message can be also accessed via instance method
     message == self.payload # true
-    response_from_tensor = Ingredient.includes(:recipts)
+    recipt = Ingredient.includes(:recipts)
       .find_by(name: ['tomatoes'])
       .recipts.first
-    respond_with :message, text: build_article(response_from_tensor), parse_mode: 'Markdown'
+    respond_with :message, text: I18n.t(:recipt, {name: recipt.name, recipt.link}), parse_mode: 'Markdown'
   end
 
   # This basic methods receives commonly used params:
@@ -40,19 +40,7 @@ class TelegramController < Telegram::Bot::UpdatesController
     # reply_with :photo, photo: File.open('party.jpg')
   end
 
-  private
-    def build_article(recipt)
-      # *bold text*
-      # _italic text_
-      # [inline URL](http://www.example.com/)
-      # [inline mention of a user](tg://user?id=123456789)
-      # `inline fixed-width code`
-      # ```block_language
-      # pre-formatted fixed-width code block
-      # ```
-      return "#{recipt.name}\n[Рецепт]: #{recipt.link}\n`Специально для` [Foodhack](https://t.me/foodhack)"
-    end
-
+  # private
   # def with_locale(&block)
   #   I18n.with_locale(locale_for_update, &block)
   # end
