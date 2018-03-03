@@ -1,14 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 receipts = [
 	{
-		name: "Fruit salad",
+		name: "Фруктовый салат",
 		link: "https://www.patee.ru/recipes/desserts/view/?id=1021364",
 		ingredients: [
 			"grape",
@@ -19,7 +11,7 @@ receipts = [
 		]
 	},
 	{
-		name: "Omelet",
+		name: "Омлет",
 		link: "http://www.calorizator.ru/recipe/45724",
 		ingredients: [
 			"cheese",
@@ -29,7 +21,7 @@ receipts = [
 		]
 	},
 	{
-		name: "Salad with tomatoes and peppers",
+		name: "Салат с помидорами и перцем",
 		link: "https://webspoon.ru/receipt/salat-iz-pomidorov-i-perca-so-smetanojj",
 		ingredients: [
 			"garlic",
@@ -40,7 +32,7 @@ receipts = [
 		]
 	},
 	{
-			name: "Chees balls",
+			name: "Сырные шарики",
 			link: "https://eda.ru/recepty/zakuski/sirnie-shariki-na-skovorode-40671",
 			ingredients: [
 				"cheese",
@@ -50,7 +42,7 @@ receipts = [
 			]
 		},
 		{
-			name: "Pepper and cheese",
+			name: "Перец и сыр",
 			link: "https://gotovim-doma.ru/recipe/667-zakuska-iz-pertsa-s-syrom-svetofor",
 			ingredients: [
 				"garlic",
@@ -61,7 +53,7 @@ receipts = [
 			]
 		},
 		{
-			name: "Lemonade",
+			name: "Лимонад",
 			link: "https://www.passion.ru/food/sostavlyaem-menyu/domashniy-limonad-10-luchshih-receptov-78028.htm",
 			ingredients: [
 				"lemon",
@@ -70,7 +62,7 @@ receipts = [
 			]
 		},
 		{
-			name: "Salad with carrot and cheese",
+			name: "Салат с морковью и сыром",
 			link: "http://pojrem.ru/salad/s-morkovju-syrom-i-chesnokom/",
 			ingredients: [
 				"garlic",
@@ -81,7 +73,7 @@ receipts = [
 			]
 		},
 		{
-			name: "Fried cheese",
+			name: "Жареный сыр",
 			link: "https://prostokvashino.ru/recipes/syr-zharenyi-v-panirovke/",
 			ingredients: [
 				"flour",
@@ -92,7 +84,7 @@ receipts = [
 			]
 		},
 		{
-			name: "Sabajon",
+			name: "Сабайон",
 			link: "https://prostokvashino.ru/recipes/syr-zharenyi-v-panirovke/",
 			ingredients: [
 				"sugar",
@@ -103,7 +95,7 @@ receipts = [
 			]
 		},
 		{
-			name: "Egg Roll",
+			name: "Яичный рулет",
 			link: "http://www.russianfood.com/recipes/recipe.php?rid=142987",
 			ingredients: [
 				"carrot",
@@ -114,7 +106,7 @@ receipts = [
 			]
 		},
 		{
-			name: "French salad",
+			name: "Французский салат",
 			link: "http://www.russianfood.com/recipes/recipe.php?rid=128572",
 			ingredients: [
 				"carrot",
@@ -125,7 +117,7 @@ receipts = [
 			]
 		},
 		{
-			name: "Pancakes with banana",
+			name: "Кексы с бананами",
 			link: "",
 			ingredients: [
 				"cottage-cheese",
@@ -137,7 +129,7 @@ receipts = [
 			]
 		},
 		{
-			name: "Potatoes pie with tomatoes and cheese",
+			name: "Картофельный пирог с сыром и томатами",
 			link: "http://www.russianfood.com/recipes/recipe.php?rid=136377",
 			ingredients: [
 				"potatoes",
@@ -148,7 +140,7 @@ receipts = [
 				"cheese"
 			]
 	}
-  ]
+]
 
 receipts.each do |r|
   recipt = Recipt.find_or_create_by({name: r[:name], link: r[:link]})

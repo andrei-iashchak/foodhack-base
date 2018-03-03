@@ -8,7 +8,8 @@ class TelegramController < Telegram::Bot::UpdatesController
   def message(message)
     # message can be also accessed via instance method
     message == self.payload # true
-    respond_with :message, text: Recipt.first.link
+    response_from_tensor = Ingredient.includes(:recipts).find_by(name: ['tomatoes']).recipts.first
+    respond_with :message, text: build_article(response_from_tensor)
   end
 
   # This basic methods receives commonly used params:
@@ -30,14 +31,25 @@ class TelegramController < Telegram::Bot::UpdatesController
 
     # There are `chat` & `from` shortcut methods.
     # For callback queries `chat` if taken from `message` when it's available.
-    response = from ? "Hello #{from['username']}!" : 'Hi there!'
+    response = from ? "Привет #{from['username']}!" : 'Здарова!'
     # There is `respond_with` helper to set `chat_id` from received message:
     respond_with :message, text: response
     # `reply_with` also sets `reply_to_message_id`:
     # reply_with :photo, photo: File.open('party.jpg')
   end
 
-  # private
+  private
+    def build_article(recipt)
+      # *bold text*
+      # _italic text_
+      # [inline URL](http://www.example.com/)
+      # [inline mention of a user](tg://user?id=123456789)
+      # `inline fixed-width code`
+      # ```block_language
+      # pre-formatted fixed-width code block
+      # ```
+      return "#{recipt.name}\n[Рецепт]: #{recipt.link}\n`Специально для` [Foodhack](https://t.me/foodhack)")
+    end
 
   # def with_locale(&block)
   #   I18n.with_locale(locale_for_update, &block)
