@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
+      html{
+        background-color:#000;
+        border-bottom:solid 5px blue;
+        border-top:solid 5px blue;
+        overflow-x:hidden;
+        padding-bottom:142px;
+      }
+
+      p{
+        color:#FFF;
+        font: 50px 'Press Start 2P',  cursive;
+        margin:200px 139px;
+        position:absolute;
+        text-align:center;
+      }
+
+      .pacman{
+        margin:40px 10px;
+      }
+
+      .pacman-top{
+        background-color:yellow;
+        height:100px;
+        width:200px;
+        position: relative;
+        border-radius:100px 100px 0 0;
+        animation: spin1 0.5s infinite linear;
+        z-index: 1;
+      }
+
+      .pacman-bottom{
+        background-color:yellow;
+        position: relative;
+        height:100px;
+        width:200px;
+        border-radius:0 0 100px 100px;
+        animation: spin2 0.5s infinite linear;
+        z-index: 1;
+      }
+
+      .feed {
+      margin-top: -120px;
+      width: 200vw;
+      height: 45px;
+      display: flex;
+      justify-content: space-between;
+      animation: eat 2s linear 0s infinite;
+      }
+
+      /* Animation*/
+
+      @keyframes spin1 {
+      	0%  {transform: rotate(0deg);}
+      	50%{transform: rotate(-35deg);}
+
+      }
+      @keyframes spin2 {
+      	0%  {transform: rotate(0deg);}
+        50%{transform: rotate(35deg);}
+      }
+
+      @-moz-keyframes spin1 {
+      	0%  {transform: rotate(0deg);}
+      	50%{transform: rotate(-35deg);}
+
+      }
+      @-moz-keyframes spin2 {
+      	0%  {transform: rotate(0deg);}
+        50%{transform: rotate(35deg);}
+      }
+
+      @-webkit-keyframes spin1 {
+      	0%  {transform: rotate(0deg);}
+      	50%{transform: rotate(-35deg);}
+
+      }
+      @-webkit-keyframes spin2 {
+      	0%  {transform: rotate(0deg);}
+        50%{transform: rotate(35deg);}
+      }
+
+      @keyframes eat {
+      	0% { transform: translateX(0vw); }
+        100% { transform: translateX(-100vw); }
+      }
+      img {
+        height: 45px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pacman">
+      <p>FOODHACK</p>
+      <div class="pacman-top"></div>
+      <div class="pacman-bottom"></div>
+      <div class="feed">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/a6904027615483.56367f1682102.png"/>
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/a6904027615483.56367f1682102.png"/>
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/a6904027615483.56367f1682102.png"/>
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/a6904027615483.56367f1682102.png"/>
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/a6904027615483.56367f1682102.png"/>
+
+      </div>
+    </div>
+  </body>
+</html>
