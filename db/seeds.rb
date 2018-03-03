@@ -151,6 +151,6 @@ receipts = [
   ]
 
 receipts.each do |r|
-  recipt = Recipt.create({name: r[:name]})
+  recipt = Recipt.find_or_create_by({name: r[:name], link: r[:link]})
   recipt.ingredients << r[:ingredients].map { |i| Ingredient.find_or_create_by({name: i}) }
 end
