@@ -1,6 +1,6 @@
 class TelegramController < Telegram::Bot::UpdatesController
   # use callbacks like in any other controllers
-  # around_action :with_locale
+  around_action :with_locale
 
   # Every update can have one of: message, inline_query, chosen_inline_result,
   # callback_query, etc.
