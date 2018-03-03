@@ -31,4 +31,4 @@
 
 en:
   hello: "Hello world"
-  recipt: "_Специально для [Foodhack](https://t.me/foodhack)_\n*%{name}*\n[Рецепт]: %{link}\n"
+  recipt: "_Специально для_ [Foodhack](https://t.me/foodhack)\n*%{name}*\n[Рецепт]: %{link}\n"
