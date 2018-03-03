@@ -5,11 +5,11 @@ class TelegramController < Telegram::Bot::UpdatesController
   # Every update can have one of: message, inline_query, chosen_inline_result,
   # callback_query, etc.
   # # Define method with same name to respond to this updates.
-  # def message(message)
-  #   # message can be also accessed via instance method
-  #   message == self.payload # true
-  #   store_message(message['text'])
-  # end
+  def message(message)
+    # message can be also accessed via instance method
+    message == self.payload # true
+    respond_with :message, text: Recipt.first.link
+  end
 
   # This basic methods receives commonly used params:
   #
