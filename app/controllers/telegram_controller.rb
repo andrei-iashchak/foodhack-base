@@ -11,8 +11,8 @@ class TelegramController < Telegram::Bot::UpdatesController
     recipt = Ingredient.includes(:recipts)
       .find_by(name: ['tomatoes'])
       .recipts.first
-    respond_with :messag, text: message
-    respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
+    respond_with :message, text: message.to_json
+    # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
   end
 
   # This basic methods receives commonly used params:
