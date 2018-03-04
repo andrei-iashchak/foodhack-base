@@ -1,3 +1,65 @@
+ingridients = [
+	{
+	  id: 1,
+	  name: "tomato"
+	}, {
+	  id: 2,
+	  name: "egg"
+	}, {
+	  id: 3,
+	  name: "egg_box"
+	}, {
+	  id: 4,
+	  name: "sweet_pepper"
+	}, {
+	  id: 5,
+	  name: "milk"
+	}, {
+	  id: 6,
+	  name: "cheese"
+	}, {
+	  id: 7,
+	  name: "butter"
+	}, {
+	  id: 8,
+	  name: "strawberry"
+	}, {
+	  id: 9,
+	  name: "wine"
+	}, {
+	  id: 10,
+	  name: "beer"
+	}, {
+	  id: 11,
+	  name: "grape"
+	}, {
+	  id: 12,
+	  name: "carrot"
+	}, {
+	  id: 13,
+	  name: "condensed_milk"
+	}, {
+	  id: 14,
+	  name: "banan"
+	}, {
+	  id: 15,
+	  name: "pepper"
+	}, {
+	  id: 16,
+	  name: "lemon"
+	}, {
+	  id: 17,
+	  name: "sauce"
+	}, {
+	  id: 18,
+	  name: "soy_sauce"
+	}, {
+	  id: 19,
+	  name: "sour_cream"
+	}
+]
+Ingredient.create(ingridients)
+
 receipts = [
 	{
 		name: "Фруктовый салат",
@@ -7,7 +69,7 @@ receipts = [
 			"banana",
 			"apple",
 			"sugar",
-			"sour-cream"
+			"sour_cream"
 		]
 	},
 	{
@@ -22,18 +84,18 @@ receipts = [
 	},
 	{
 		name: "Салат с помидорами и перцем",
-		link: "https://webspoon.ru/receipt/salat-iz-pomidorov-i-perca-so-smetanojj",
+		link: "https://webspoon.ru/receipt/salat_iz_pomidorov_i_perca_so_smetanojj",
 		ingredients: [
 			"garlic",
 			"tomato",
-			"sweet-pepper",
-			"sour-cream",
+			"sweet_pepper",
+			"sour_cream",
 			"salt"
 		]
 	},
 	{
 			name: "Сырные шарики",
-			link: "https://eda.ru/recepty/zakuski/sirnie-shariki-na-skovorode-40671",
+			link: "https://eda.ru/recepty/zakuski/sirnie_shariki_na_skovorode_40671",
 			ingredients: [
 				"cheese",
 				"flour",
@@ -43,18 +105,18 @@ receipts = [
 		},
 		{
 			name: "Перец и сыр",
-			link: "https://gotovim-doma.ru/recipe/667-zakuska-iz-pertsa-s-syrom-svetofor",
+			link: "https://gotovim_doma.ru/recipe/667_zakuska_iz_pertsa_s_syrom_svetofor",
 			ingredients: [
 				"garlic",
 				"cheese",
-				"sweet-pepper",
-				"sour-cream",
+				"sweet_pepper",
+				"sour_cream",
 				"salt"
 			]
 		},
 		{
 			name: "Лимонад",
-			link: "https://www.passion.ru/food/sostavlyaem-menyu/domashniy-limonad-10-luchshih-receptov-78028.htm",
+			link: "https://www.passion.ru/food/sostavlyaem_menyu/domashniy_limonad_10_luchshih_receptov_78028.htm",
 			ingredients: [
 				"lemon",
 				"water",
@@ -63,18 +125,18 @@ receipts = [
 		},
 		{
 			name: "Салат с морковью и сыром",
-			link: "http://pojrem.ru/salad/s-morkovju-syrom-i-chesnokom/",
+			link: "http://pojrem.ru/salad/s_morkovju_syrom_i_chesnokom/",
 			ingredients: [
 				"garlic",
 				"carrot",
 				"cheese",
-				"sour-cream",
+				"sour_cream",
 				"salt"
 			]
 		},
 		{
 			name: "Жареный сыр",
-			link: "https://prostokvashino.ru/recipes/syr-zharenyi-v-panirovke/",
+			link: "https://prostokvashino.ru/recipes/syr_zharenyi_v_panirovke/",
 			ingredients: [
 				"flour",
 				"oil",
@@ -85,7 +147,7 @@ receipts = [
 		},
 		{
 			name: "Сабайон",
-			link: "https://prostokvashino.ru/recipes/syr-zharenyi-v-panirovke/",
+			link: "https://prostokvashino.ru/recipes/syr_zharenyi_v_panirovke/",
 			ingredients: [
 				"sugar",
 				"vine",
@@ -102,7 +164,7 @@ receipts = [
 				"oil",
 				"salt",
 				"egg",
-				"sweet-pepper"
+				"sweet_pepper"
 			]
 		},
 		{
@@ -113,14 +175,14 @@ receipts = [
 				"apple",
 				"cheese",
 				"egg",
-				"sour-cream"
+				"sour_cream"
 			]
 		},
 		{
 			name: "Кексы с бананами",
 			link: "",
 			ingredients: [
-				"cottage-cheese",
+				"cottage_cheese",
 				"oil",
 				"banana",
 				"egg",
