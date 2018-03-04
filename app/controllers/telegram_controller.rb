@@ -23,7 +23,7 @@ class TelegramController < Telegram::Bot::UpdatesController
       if cntnt["result"].present?
         load_file(cntnt["result"]["file_path"])
         anwsers = ask_nn(cntnt["result"]["file_path"])
-        respond_with :message, text: anwsers.to_json
+        respond_with :message, text: anwsers || I18n.t(:fetching_error)
       else
         respond_with :message, text: I18n.t(:error_of_photo_downloading)
       end
@@ -76,7 +76,7 @@ class TelegramController < Telegram::Bot::UpdatesController
       begin
         return RestClient.get "foodhack_ml:5000", content_type: :json
       rescue
-        return {status: "NO CONNECTION"}
+        return nil
       end
     end
     #
