@@ -58,7 +58,7 @@ class TelegramController < Telegram::Bot::UpdatesController
 
   private
     def load_file(file_path)
-      uri = URI(I18n.t(:get_file_path, telegram_token: ENV["TELEGRAM_TOKEN"], :file_path))
+      uri = URI(I18n.t(:get_file_path, telegram_token: ENV["TELEGRAM_TOKEN"], file_path: file_path))
       Net::HTTP.start(uri, use_ssl: uri.scheme == 'https') do |http|
         resp = http.get(
           open("/uploads/#{file_path}", "wb") { |file|
