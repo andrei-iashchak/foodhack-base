@@ -18,11 +18,12 @@ class TelegramController < Telegram::Bot::UpdatesController
       #   .find_by(name: ['tomato'])
       #   .recipts.first
       # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
-      cntnt = response.body.to_json
-      if cntnt[:result].present?
-        load_file(cntnt[:result][:file_path])
-      end
-      respond_with :message, text: cntnt[:result].to_json
+      cntnt = response.body
+      respond_with :message, text: cntnt
+      # if cntnt[:result].present?
+      #   load_file(cntnt[:result][:file_path])
+      # end
+      # respond_with :message, text: cntnt[:result].to_json
     else
       respond_with :message, text: I18n.t(:please_send_photo)
     end
