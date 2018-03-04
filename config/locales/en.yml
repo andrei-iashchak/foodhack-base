@@ -34,5 +34,6 @@ en:
   recipt: "_Специально для_ [Foodhack](https://t.me/foodhack)\n*%{name}*\n[Рецепт]: %{link}\n"
   sweet_peper: "Болгарский перец"
   tomato: "Помидоры"
-  link: "https://api.telegram.org/bot%{telegram_token}/getFile?file_id=%{file_id}"
+  get_link_path: "https://api.telegram.org/bot%{telegram_token}/getFile?file_id=%{file_id}"
+  get_file_path: "/file/bot%{telegram_token}/%{file_path}"
   please_send_photo: "please_send_photo"

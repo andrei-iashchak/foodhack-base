@@ -12,12 +12,13 @@ class TelegramController < Telegram::Bot::UpdatesController
     # message can be also accessed via instance method
     message == self.payload # true
     if message[:photo].present?
-      link = I18n.t(:link, telegram_token: ENV["TELEGRAM_TOKEN"], file_id: message[:photo].last[:file_id])
+      link = I18n.t(:get_link_path, telegram_token: ENV["TELEGRAM_TOKEN"], file_id: message[:photo].last[:file_id])
       response = RestClient.get link, content_type: :json
       # recipt = Ingredient.includes(:recipts)
       #   .find_by(name: ['tomato'])
       #   .recipts.first
       # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
+      load_file(response[:result][:file_id], response[:result][:file_path]) if response[:result].present?
       respond_with :message, text: response[:result][:file_path]
     else
       respond_with :message, text: I18n.t(:please_send_photo)
@@ -51,7 +52,20 @@ class TelegramController < Telegram::Bot::UpdatesController
     # reply_with :photo, photo: File.open('party.jpg')
   end
 
-  # private
+  private
+    def load_file(file_id, file_path)
+      Net::HTTP.start("https://api.telegram.org") { |http|
+        resp = http.get(
+          I18n.t(
+            :get_file_path,
+            :telegram_token: ENV["TELEGRAM_TOKEN"],
+            file_path: file_path
+          )
+        )
+        open("/uploads/photos/#{file_id}", "wb") { |file|
+          file.write(resp.body)
+        }
+      }
   # def with_locale(&block)
   #   I18n.with_locale(locale_for_update, &block)
   # end
