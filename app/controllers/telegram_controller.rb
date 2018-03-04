@@ -19,7 +19,7 @@ class TelegramController < Telegram::Bot::UpdatesController
       #   .recipts.first
       # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
       cntnt = response.body
-      respond_with :message, text: cntnt
+      respond_with :message, text: cntnt[:result]
       # if cntnt[:result].present?
       #   load_file(cntnt[:result][:file_path])
       # end
