@@ -37,3 +37,5 @@ en:
   get_link_path: "https://api.telegram.org/bot%{telegram_token}/getFile?file_id=%{file_id}"
   get_file_path: "https://api.telegram.org/file/bot%{telegram_token}/%{file_path}"
   please_send_photo: "please_send_photo"
+  error_of_photo_downloading: "error_of_photo_downloading"
+  welcome: "Дорогой %{username}! Чтобы воспрользоваться мной, отправь мне фотографию своего холодильника, я постараюсь ее рассмотреть и в ответ дам тебе парочку интересных рецептов"

@@ -22,8 +22,11 @@ class TelegramController < Telegram::Bot::UpdatesController
       # respond_with :message, text: cntnt.result
       if cntnt["result"].present?
         load_file(cntnt["result"]["file_path"])
+        anwsers = ask_nn(cntnt["result"]["file_path"])
+        respond_with :message, text: anwsers.to_json
+      else
+        respond_with :message, text: I18n.t(:error_of_photo_downloading)
       end
-      respond_with :message, text: cntnt["result"]
     else
       respond_with :message, text: I18n.t(:please_send_photo)
     end
@@ -49,7 +52,7 @@ class TelegramController < Telegram::Bot::UpdatesController
 
     # There are `chat` & `from` shortcut methods.
     # For callback queries `chat` if taken from `message` when it's available.
-    response = from ? "Привет #{from['username']}!" : 'Здарова!'
+    response = from ? I18n.t(:welcome, username: from['username']) : 'Здарова!'
     # There is `respond_with` helper to set `chat_id` from received message:
     respond_with :message, text: response
     # `reply_with` also sets `reply_to_message_id`:
@@ -67,6 +70,10 @@ class TelegramController < Telegram::Bot::UpdatesController
           file.write(response.body)
         }
       end
+    end
+
+    def ask_nn(file_path)
+      return RestClient.get "foodhack_ml:5000", content_type: :json
     end
     #
   # def with_locale(&block)
