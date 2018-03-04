@@ -14,15 +14,14 @@ class TelegramController < Telegram::Bot::UpdatesController
     if message[:photo].present?
       link = I18n.t(:get_link_path, telegram_token: ENV["TELEGRAM_TOKEN"], file_id: message[:photo].last[:file_id])
       response = RestClient.get link, content_type: :json
-      # recipt = Ingredient.includes(:recipts)
-      #   .find_by(name: ['tomato'])
-      #   .recipts.first
-      # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
       cntnt = JSON.parse(response.body)
-      # respond_with :message, text: cntnt.result
       if cntnt["result"].present?
         load_file(cntnt["result"]["file_path"])
-        anwsers = ask_nn(cntnt["result"]["file_path"])
+        response = ask_nn(cntnt["result"]["file_path"])
+        recipt = Ingredient.includes(:recipts)
+          .where(id: [response])
+          .recipts.first
+        anwsers = I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
         respond_with :message, text: anwsers || I18n.t(:fetching_error)
       else
         respond_with :message, text: I18n.t(:error_of_photo_downloading)
@@ -48,15 +47,8 @@ class TelegramController < Telegram::Bot::UpdatesController
   # For some commands like /message or /123 method names should start with
   # `on_` to avoid conflicts.
   def start(data = nil, *)
-    # do_smth_with(data)
-
-    # There are `chat` & `from` shortcut methods.
-    # For callback queries `chat` if taken from `message` when it's available.
     response = from ? I18n.t(:welcome, username: from['username']) : 'Здарова!'
-    # There is `respond_with` helper to set `chat_id` from received message:
     respond_with :message, text: response
-    # `reply_with` also sets `reply_to_message_id`:
-    # reply_with :photo, photo: File.open('party.jpg')
   end
 
   private
@@ -74,7 +66,8 @@ class TelegramController < Telegram::Bot::UpdatesController
 
     def ask_nn(file_path)
       begin
-        return RestClient.get "foodhack_ml:5000", content_type: :json
+        request = RestClient.get "foodhack_ml:5000", content_type: :json
+        # return [1,2,3,4,5]
       rescue
         return nil
       end
