@@ -15,9 +15,9 @@ receipts = [
 		link: "http://www.calorizator.ru/recipe/45724",
 		ingredients: [
 			"cheese",
-			"eggs",
+			"egg",
 			"milk",
-			"tomatoes"
+			"tomato"
 		]
 	},
 	{
@@ -25,7 +25,7 @@ receipts = [
 		link: "https://webspoon.ru/receipt/salat-iz-pomidorov-i-perca-so-smetanojj",
 		ingredients: [
 			"garlic",
-			"tomatoes",
+			"tomato",
 			"sweet-pepper",
 			"sour-cream",
 			"salt"
@@ -37,7 +37,7 @@ receipts = [
 			ingredients: [
 				"cheese",
 				"flour",
-				"eggs",
+				"egg",
 				"salt"
 			]
 		},
@@ -47,7 +47,7 @@ receipts = [
 			ingredients: [
 				"garlic",
 				"cheese",
-				"sweet pepper",
+				"sweet-pepper",
 				"sour-cream",
 				"salt"
 			]
@@ -79,7 +79,7 @@ receipts = [
 				"flour",
 				"oil",
 				"cheese",
-				"eggs",
+				"egg",
 				"bread crumbs"
 			]
 		},
@@ -89,8 +89,8 @@ receipts = [
 			ingredients: [
 				"sugar",
 				"vine",
-				"eggs",
-				"apples",
+				"egg",
+				"apple",
 				"grapes"
 			]
 		},
@@ -101,8 +101,8 @@ receipts = [
 				"carrot",
 				"oil",
 				"salt",
-				"eggs",
-				"sweet pepper"
+				"egg",
+				"sweet-pepper"
 			]
 		},
 		{
@@ -112,7 +112,7 @@ receipts = [
 				"carrot",
 				"apple",
 				"cheese",
-				"eggs",
+				"egg",
 				"sour-cream"
 			]
 		},
@@ -123,7 +123,7 @@ receipts = [
 				"cottage-cheese",
 				"oil",
 				"banana",
-				"eggs",
+				"egg",
 				"flour",
 				"sugar"
 			]
@@ -132,11 +132,11 @@ receipts = [
 			name: "Картофельный пирог с сыром и томатами",
 			link: "http://www.russianfood.com/recipes/recipe.php?rid=136377",
 			ingredients: [
-				"potatoes",
+				"potato",
 				"salt",
-				"eggs",
+				"egg",
 				"meat",
-				"tomatoes",
+				"tomato",
 				"cheese"
 			]
 	}
