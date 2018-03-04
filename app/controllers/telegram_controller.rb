@@ -20,12 +20,10 @@ class TelegramController < Telegram::Bot::UpdatesController
       # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
       cntnt = JSON.parse(response.body)
       # respond_with :message, text: cntnt.result
-      if cntnt[:result].present?
-        load_file(cntnt[:result][:file_path])
-      else
-        respond_with :message, text: cntnt.inspect.to_json
+      if cntnt["result"].present?
+        load_file(cntnt["result"]["file_path"])
       end
-      respond_with :message, text: cntnt[:result] || cntnt.result
+      respond_with :message, text: cntnt["result"]
     else
       respond_with :message, text: I18n.t(:please_send_photo)
     end
