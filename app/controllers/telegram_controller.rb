@@ -16,13 +16,13 @@ class TelegramController < Telegram::Bot::UpdatesController
       response = RestClient.get link, content_type: :json
       cntnt = JSON.parse(response.body)
       if cntnt["result"].present?
-        load_file(cntnt["result"]["file_path"])
         response = ask_nn(cntnt["result"]["file_path"])
-        recipt = Ingredient.includes(:recipts)
-          .where(id: [response])
-          .recipts.first
-        anwsers = I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
-        respond_with :message, text: anwsers || I18n.t(:fetching_error)
+        respond_with :message, text: response.to_json
+        # recipt = Ingredient.includes(:recipts)
+        #   .where(id: [response])
+        #   .recipts.first
+        # anwsers = I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
+        # respond_with :message, text: anwsers || I18n.t(:fetching_error)
       else
         respond_with :message, text: I18n.t(:error_of_photo_downloading)
       end
@@ -52,21 +52,12 @@ class TelegramController < Telegram::Bot::UpdatesController
   end
 
   private
-    def load_file(file_path)
-      uri = URI(I18n.t(:get_file_path, telegram_token: ENV["TELEGRAM_TOKEN"], file_path: file_path))
-      Net::HTTP.start(uri.host, uri.port,
-        :use_ssl => uri.scheme == 'https') do |http|
-        request = Net::HTTP::Get.new uri
-        response = http.request request
-        open("/uploads/#{file_path}", "wb") { |file|
-          file.write(response.body)
-        }
-      end
-    end
 
     def ask_nn(file_path)
       begin
-        request = RestClient.get "foodhack_ml:5000", content_type: :json
+        img_url = I18n.t(:get_file_path, telegram_token: ENV["TELEGRAM_TOKEN"], file_path: file_path)
+        request = RestClient.get "http://foodhack_ml:5000/detect_objects?url=#{img_url}", content_type: :json
+        content = JSON.parse(request.body)["result"]
         # return [1,2,3,4,5]
       rescue
         return nil
