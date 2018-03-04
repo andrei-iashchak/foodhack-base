@@ -18,7 +18,9 @@ class TelegramController < Telegram::Bot::UpdatesController
       #   .find_by(name: ['tomato'])
       #   .recipts.first
       # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
-      load_file(response[:result][:file_path]) if response[:result].present?
+      if response[:result].present?
+        load_file(response[:result][:file_path])
+      end
       respond_with :message, text: response[:result].to_json
     else
       respond_with :message, text: I18n.t(:please_send_photo)
@@ -66,6 +68,7 @@ class TelegramController < Telegram::Bot::UpdatesController
           file.write(resp.body)
         }
       }
+    end
   # def with_locale(&block)
   #   I18n.with_locale(locale_for_update, &block)
   # end
