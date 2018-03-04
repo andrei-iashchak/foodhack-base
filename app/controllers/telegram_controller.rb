@@ -1,4 +1,6 @@
 require 'net/http'
+require 'rest-client'
+
 class TelegramController < Telegram::Bot::UpdatesController
   # use callbacks like in any other controllers
   # around_action :with_locale
@@ -11,14 +13,16 @@ class TelegramController < Telegram::Bot::UpdatesController
     message == self.payload # true
     if message[:photo].present?
       link = I18n.t(:link, telegram_token: ENV["TELEGRAM_TOKEN"], file_id: message[:photo].last[:file_id])
-      respond_with :message, text: link
+      response = RestClient.get link, content_type: :json
+      # recipt = Ingredient.includes(:recipts)
+      #   .find_by(name: ['tomato'])
+      #   .recipts.first
+      # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
+      respond_with :message, text: response[:result][:file_path]
     else
-      recipt = Ingredient.includes(:recipts)
-        .find_by(name: ['tomato'])
-        .recipts.first
-      respond_with :message, text: message.to_json
+      respond_with :message, text: I18n.t(:please_send_photo)
     end
-    # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
+
   end
 
   # This basic methods receives commonly used params:

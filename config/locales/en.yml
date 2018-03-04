@@ -35,3 +35,4 @@ en:
   sweet_peper: "Болгарский перец"
   tomato: "Помидоры"
   link: "https://api.telegram.org/bot%{telegram_token}/getFile?file_id=%{file_id}"
+  please_send_photo: "please_send_photo"
