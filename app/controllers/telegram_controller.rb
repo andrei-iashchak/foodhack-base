@@ -9,7 +9,7 @@ class TelegramController < Telegram::Bot::UpdatesController
     # message can be also accessed via instance method
     message == self.payload # true
     recipt = Ingredient.includes(:recipts)
-      .find_by(name: ['tomatoes'])
+      .find_by(name: ['tomato'])
       .recipts.first
     respond_with :message, text: message.to_json
     # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
