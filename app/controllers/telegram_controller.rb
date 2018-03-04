@@ -59,14 +59,16 @@ class TelegramController < Telegram::Bot::UpdatesController
   private
     def load_file(file_path)
       uri = URI(I18n.t(:get_file_path, telegram_token: ENV["TELEGRAM_TOKEN"], file_path: file_path))
-      Net::HTTP.start(uri, use_ssl: uri.scheme == 'https') do |http|
-        resp = http.get(
-          open("/uploads/#{file_path}", "wb") { |file|
-            file.write(resp.body)
-          }
-        )
+      Net::HTTP.start(uri.host, uri.port,
+        :use_ssl => uri.scheme == 'https') do |http|
+        request = Net::HTTP::Get.new uri
+        response = http.request request
+        open("/uploads/#{file_path}", "wb") { |file|
+          file.write(response.body)
+        }
       end
     end
+    #
   # def with_locale(&block)
   #   I18n.with_locale(locale_for_update, &block)
   # end
