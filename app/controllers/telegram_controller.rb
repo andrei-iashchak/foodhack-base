@@ -56,7 +56,7 @@ class TelegramController < Telegram::Bot::UpdatesController
     def ask_nn(file_path)
       begin
         img_url = I18n.t(:get_file_path, telegram_token: ENV["TELEGRAM_TOKEN"], file_path: file_path)
-        request = RestClient.get "http://recognition_app_1:5000/?url=#{img_url}", content_type: :json
+        request = RestClient.get "http://recognition:5000/?url=#{img_url}", content_type: :json
         content = JSON.parse(request.body)["result"]
         # return [1,2,3,4,5]
       rescue
