@@ -1,3 +1,4 @@
+require 'net/http'
 class TelegramController < Telegram::Bot::UpdatesController
   # use callbacks like in any other controllers
   # around_action :with_locale
@@ -8,10 +9,15 @@ class TelegramController < Telegram::Bot::UpdatesController
   def message(message)
     # message can be also accessed via instance method
     message == self.payload # true
-    recipt = Ingredient.includes(:recipts)
-      .find_by(name: ['tomato'])
-      .recipts.first
-    respond_with :message, text: message.to_json
+    if message[:photo].present?
+      link = I18n.t(:link, telegram_token: ENV["TELEGRAM_TOKEN"], file_id: message[:photo].last[:file_id])
+      respond_with :message, text: link
+    else
+      recipt = Ingredient.includes(:recipts)
+        .find_by(name: ['tomato'])
+        .recipts.first
+      respond_with :message, text: message.to_json
+    end
     # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
   end
 
