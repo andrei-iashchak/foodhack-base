@@ -22,6 +22,8 @@ class TelegramController < Telegram::Bot::UpdatesController
       # respond_with :message, text: cntnt.result
       if cntnt[:result].present?
         load_file(cntnt[:result][:file_path])
+      else
+        respond_with :message, text: cntnt.inspect.to_json
       end
       respond_with :message, text: cntnt[:result] || cntnt.result
     else
