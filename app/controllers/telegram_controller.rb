@@ -18,8 +18,8 @@ class TelegramController < Telegram::Bot::UpdatesController
       #   .find_by(name: ['tomato'])
       #   .recipts.first
       # respond_with :message, text: I18n.t(:recipt, name: recipt.name, link: recipt.link), parse_mode: 'Markdown'
-      load_file(response[:result][:file_id], response[:result][:file_path]) if response[:result].present?
-      respond_with :message, text: response[:result][:file_path]
+      load_file(response[:result][:file_path]) if response[:result].present?
+      respond_with :message, text: response[:result].to_json
     else
       respond_with :message, text: I18n.t(:please_send_photo)
     end
@@ -53,16 +53,16 @@ class TelegramController < Telegram::Bot::UpdatesController
   end
 
   private
-    def load_file(file_id, file_path)
+    def load_file(file_path)
       Net::HTTP.start("https://api.telegram.org") { |http|
         resp = http.get(
           I18n.t(
             :get_file_path,
-            :telegram_token: ENV["TELEGRAM_TOKEN"],
+            telegram_token: ENV["TELEGRAM_TOKEN"],
             file_path: file_path
           )
         )
-        open("/uploads/photos/#{file_id}", "wb") { |file|
+        open("/uploads/#{file_path}", "wb") { |file|
           file.write(resp.body)
         }
       }
