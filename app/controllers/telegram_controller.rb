@@ -73,7 +73,11 @@ class TelegramController < Telegram::Bot::UpdatesController
     end
 
     def ask_nn(file_path)
-      return RestClient.get "foodhack_ml:5000", content_type: :json
+      begin
+        return RestClient.get "foodhack_ml:5000", content_type: :json
+      rescue
+        return {status: "NO CONNECTION"}
+      end
     end
     #
   # def with_locale(&block)
